@@ -1,0 +1,261 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>InteriorShop-インテリアタイプ診断-</title>
+    <style>
+        :root {
+            --image-color1: rgb(133, 102, 219);
+            --image-color2: rgb(0, 200, 170);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        section {
+            height: 100vh;
+        }
+        
+        h1 {
+            color: white;
+            z-index: 1;
+        }
+        
+        span {
+            color: var(--image-color2) !important;
+        }
+        
+        .txc {
+            color: var(--image-color1) !important;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .diagonal-l {
+            height: 75vh; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--image-color1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .diagonal-r {
+            height: 75vh; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--image-color2);
+            position: relative;
+            overflow: hidden;
+        
+        }
+        
+        .image-box {
+            text-align: center;
+            position: absolute;
+            width: 90%;
+            height: 400px;
+            background: linear-gradient(skyblue, white);
+            overflow: hidden;
+        }
+        
+        .image-box img {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+        .image-box:hover img {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.5;
+            cursor: pointer;
+        }
+        
+        .bg-img-r {
+            background-size: cover;
+            background-position: center;
+        }
+        #image-l{
+            background-size: cover;
+        }
+        
+        .explanation {
+            height: 25vh;
+            color: white;
+            background: linear-gradient(orange,rgb(222, 222, 0));
+        
+        }
+        
+        .explanation {
+            padding-top: 20px;
+            text-align: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        #bt_l {
+            position: absolute;
+            font-weight: 700;
+            top: 65%;
+            left: 40%;
+            height: 100px;
+            width: 100px;
+            color: white;
+            border-color: var(--image-color1);
+            box-shadow: none;
+            background-color: var(--image-color1);
+            z-index: 10;
+        }
+        #bt_r {
+            position: absolute;
+            font-weight: 700;
+            top: 65%;
+            left: 40%;
+            height: 100px;
+            width: 100px;
+            color: white;
+            border-color: var(--image-color2);
+            box-shadow: none;
+            background-color: var(--image-color2);
+        }
+        
+        h1, h3 {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="diagonal-l col-lg-6">
+                    <div class="image-box mx-auto bg-img-l" id="imageL">
+                        <!-- <h1>Cat</h1> -->
+                        <img onclick="nextImgL()" src="https://thumb.photo-ac.com/ee/ee9330cc03e4cbb4163b71bdb4b061d9_t.jpeg" alt="">
+                    </div>
+                </div>
+                <div class="diagonal-r col-lg-6">
+                    <div class="image-box mx-auto bg-img-r" id="imageR">
+                        <!-- <h1>Dog</h1> -->
+                        <img onclick="nextImgR()" src="https://thumb.photo-ac.com/e4/e4fe7d472da813603226e2314d43de8f_t.jpeg" alt="">
+                    </div>
+                </div>
+                <div class="container-fluid explanation">
+                    <div class="row">
+                        <h3>インテリアタイプ診断をしましょう！</h3>
+                        <h3 id="text">どちらか好きな画像を選んでください！全５問中１問目</h3>
+                        <h3><a href='{% url "shop" %}'><span class="txc">Interior</span><span>Shop</span></a></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        //jQueryを使わずにJavaScriptを記述してみる
+let imglistL = ["https://thumb.photo-ac.com/72/72fee349d1de5ad07697e0041d36a17f_t.jpeg",
+                "https://thumb.photo-ac.com/bb/bbae212a1b00719d8595706496a37b54_t.jpeg",
+                "https://thumb.photo-ac.com/a9/a93f386f857164064c9e0a8ff2d578ed_t.jpeg",
+                "https://thumb.photo-ac.com/7c/7ccc516c31d21cc06e6c8003abf072d6_t.jpeg"];
+                
+let imglistR = ["https://thumb.photo-ac.com/27/27ccd91df00e793c97ec9f979d289443_t.jpeg",
+                "https://thumb.photo-ac.com/ac/ac160975551d2328df7a2bf4c7723743_t.jpeg",
+                "https://thumb.photo-ac.com/83/83b35813e2af550459c2702844d94d69_t.jpeg",
+                "https://thumb.photo-ac.com/7e/7e988cfbe61e1015dba3c36bdbd9c097_t.jpeg"];
+
+let i = 0;
+let sum = 0;
+let size = imglistL.length;
+//左右の画像要素を取得
+let element_l = document.getElementById('imageL');
+let element_r = document.getElementById('imageR');
+let element_t = document.getElementById('text');
+//イメージを切り替える関数
+function nextImgL() {
+element_l.innerHTML = `<img onclick="nextImgL()" src="${imglistL[i]}">`;
+element_r.innerHTML = `<img onclick="nextImgR()" src="${imglistR[i]}">`;
+element_t.textContent = `どちらか好きな画像を選んでください！全５問中${i + 2}問目`;
+i ++;
+sum += 3;
+if (i > size) {
+preview();
+element_t.textContent = `終了です！結果をご覧ください`;
+}
+}
+function nextImgR() {
+element_r.innerHTML = `<img onclick="nextImgR()" src="${imglistR[i]}">`;
+element_l.innerHTML = `<img onclick="nextImgL()" src="${imglistL[i]}">`;
+element_t.textContent = `どちらか好きな画像を選んでください！全５問中${i + 2}問目`;
+i ++;
+sum ++;
+if (i > size) {
+preview();
+element_t.textContent = `終了です！結果をご覧ください`;
+}
+}
+//結果の前画面を表示する関数
+function preview() {
+element_l.innerHTML = `<h1 style="margin-top: 120px;">診断終了！</h1>
+          <h2 style="color: white;">おつかれさまでした！</h2>`;
+element_r.innerHTML = `<h2 style="margin-top: 135px; color: white;">下のボタンをクリックして結果を見てね！</h2>
+          <button onclick="result()" id="bt_l">結果を見る</button>`;
+}
+//結果を表示する関数
+function result() {
+if (sum == 15) {
+element_l.innerHTML = `<img src="https://thumb.photo-ac.com/b6/b6ef6d8624996997826be4d3778c9c5f_t.jpeg" alt="">`;
+element_r.innerHTML = `<h1>あなたはエレガントタイプです！</h1>
+              <h3>このタイプのあなたは、<br>全体的に高級感漂うコーディネートを好みがちなのではないでしょうか？</h3>
+              <button onclick="restart()" id="bt_r">もう一度</button>`;
+} else if(sum == 13) {
+element_l.innerHTML = `<img src="https://thumb.photo-ac.com/29/29f62513c1d193bae0200d9a12d985a9_t.jpeg" alt="">`;
+element_r.innerHTML = `<h1>あなたはコンフォートタイプです！</h1>
+              <h3>このタイプのあなたは、<br>快適性を求めるコーディネートを好みがちなのではないでしょうか？</h3>
+              <button onclick="restart()" id="bt_r">もう一度</button>`;
+} else if(sum == 11) {
+element_l.innerHTML = `<img src="https://thumb.photo-ac.com/83/83784c016e15d6b1efa1831997e07c50_t.jpeg" alt="">`;
+element_r.innerHTML = `<h1>あなたはファンシータイプです！</h1>
+              <h3>このタイプのあなたは、<br>派手さを求めるコーディネートを好みがちなのではないでしょうか？</h3>
+              <button onclick="restart()" id="bt_r">もう一度</button>`;
+} else if (sum == 9) {
+element_l.innerHTML = `<img src="https://thumb.photo-ac.com/e7/e747bfb1f0a2d10f8a94ca55efacce78_t.jpeg" alt="">`;
+element_r.innerHTML = `<h1>あなたはナチュラルタイプです！</h1>
+              <h3>このタイプのあなたは、<br>自然の温もりを求めるコーディネートを好みがちなのではないでしょうか？</h3>
+              <button onclick="restart()" id="bt_r">もう一度</button>`;
+} else if (sum == 7) {
+element_l.innerHTML = `<img src="https://thumb.photo-ac.com/40/4058f6ff1fdddb858680a7722cadb8e5_t.jpeg" alt="">`;
+element_r.innerHTML = `<h1>あなたはユニークタイプです！</h1>
+              <h3>このタイプのあなたは、<br>独自性を求めるコーディネートを好みがちなのではないでしょうか？</h3>
+              <button onclick="restart()" id="bt_r">もう一度</button>`;
+} else {
+element_l.innerHTML = `<img src="https://thumb.photo-ac.com/7c/7c6aa32c76846325b5485716bfe58186_t.jpeg" alt="">`;
+element_r.innerHTML = `<h1>あなたはモダンタイプです！</h1>
+             <h3>このタイプのあなたは、<br>トレンドコーディネートを好みがちなのではないでしょうか？</h3>
+             <button onclick="restart()" id="bt_r">もう一度</button>`;
+}
+}
+//設定を初期値に戻す関数
+function restart() {
+i = 0;
+sum = 0;
+element_l.innerHTML = `<img onclick="nextImgL()" src="https://thumb.photo-ac.com/ee/ee9330cc03e4cbb4163b71bdb4b061d9_t.jpeg" alt="">`;
+element_r.innerHTML = `<img onclick="nextImgR()" src="https://thumb.photo-ac.com/e4/e4fe7d472da813603226e2314d43de8f_t.jpeg" alt="">`;
+element_t.textContent = `どちらか好きな画像を選んでください！全５問中１問目`;
+}
+    </script>
+</body>
+</html>

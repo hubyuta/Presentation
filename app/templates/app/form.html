@@ -1,0 +1,18 @@
+{% extends "./base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="pt-5">
+    
+</div>
+{% block title %}<h3 class="form-check">お問い合わせフォーム内容確認{{ form.id }}</h3>{% endblock %}
+<form action="" method="POST" class="row g-3 justify-content-center">
+        {% csrf_token %}
+        {{ form.name|add_class:"box-1 col-md-10 mb-2 form-control"|attr:"placeholder=氏名" }}
+        {{ form.email|add_class:"box-2 col-md-10 mb-2  form-control"|attr:"placeholder=メールアドレス" }}
+        {{ form.subject|add_class:"box-3 col-md-5 mb-2 form-control"|attr:"placeholder=件名" }}
+        {{ form.message|add_class:"box-4 col-md-5 mb-2 form-control"|attr:"placeholder=メッセージ" }}
+        <div class="box-5 col-md-10 d-grid">
+            <a href='{% url "form-thanks" %}' class="btn btn-primary">確認</a>
+          </div>
+    </form>
+{% endblock  %}

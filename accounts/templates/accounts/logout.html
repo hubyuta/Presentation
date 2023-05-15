@@ -1,0 +1,21 @@
+{% extends 'app/base.html' %}
+{% block content %}
+
+<div style="height:15vh;"></div>
+
+<div class="card card-auth my-5 mx-auto">
+    <div class="card-body">
+        <p class="card-title text-center">{{ request.user.first_name }}様</p>
+        <p class="card-title text-center">ログアウトしますか？</p>
+        <form method='post' class="form-auth">
+            {% csrf_token %}
+            <div class="button mx-auto d-flex justify-content-center">
+                <button class="btn btn-lg btn-warning btn-main1 btn-block mx-auto" type="submit">ログアウト</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="height:10vh;"></div>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends './base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="space">
+
+</div>
+
+<section id="fundamental" class="row py-0 bg-light pt-4">
+    <div class="col-lg-12">
+      <div class="row">
+        <p><span class="funda-text-col">Fundamental of Interior Design</span><br>
+        インテリアデザインの基本は、全体的なまとまりを意識する事です。<br>
+        テーマカラーを決めたり、メインとなる家具に沿って周辺を取り揃えるなど・・・<br>
+        ぜひ基本を踏まえた上で、あなた好みの素敵なインテリアにしましょう！
+        </p>
+        <div class="found-img">
+          <div class="row">
+            <div class="col-md-4 funda-img"></div>
+            <div class="col-md-4 funda-img2"></div>
+            <div class="col-md-4 funda-img3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-12 mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="diagnose col-md-10 pt-4 offset-md-1">
+            <h6 class="text-warning">What is Interior Design?</h6>
+            <h1>Interior Design</h1>
+            <p>インテリアデザインとは、あなた自身を表現するものでもあります！</p>
+
+            <div class="row">
+              <div class="d-flex mt-5 col-lg-6">
+                <div class="iconbox me-3">
+                  <i class="bx bxs-comment-detail"></i>
+                </div>
+                <div>
+                  <h5><a href='{% url "diagnose" %}'>インテリアタイプ診断</a></h5>
+                  <p>いくつかの質問に答えてインテリアタイプ診断！</p>
+                </div>
+              </div>
+                
+              <div class="d-flex mt-5 col-lg-6">
+                  <div class="iconbox me-3">
+                    <i class="bx bxs-comment-detail"></i>
+                  </div>
+                  <div>
+                    <h5><a href="{% url "introduce" %}">インテリアデザインとは？</a></h5>
+                    <p>インテリアを充実させると何がいいのか？</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

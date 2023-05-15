@@ -1,0 +1,52 @@
+{% extends './base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="space">
+
+</div>
+
+<section id="diagnose" class="row py-0 bg-light pt-5">
+    <div class="col-lg-12 intro-img">
+      <p><span class="intro-text-col">What is Interior Design?</span><br>
+        インテリアデザインとは何でしょうか？<br>
+        忙しい日々の中で、人にはそれぞれくつろげる空間が必要です。<br>
+        多くの時間を過ごすお部屋だからこそ、インテリアデザインにこだわってみましょう！
+      </p>
+    </div>
+    <div class="col-lg-12 mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="diagnose col-md-10 pt-4 offset-md-1">
+            <h6 class="text-warning">What is Interior Design?</h6>
+            <h1>Interior Design</h1>
+            <p>インテリアデザインとは、あなた自身を表現するものでもあります！</p>
+
+            <div class="row">
+            <div class="d-flex mt-5 col-lg-6">
+              <div class="iconbox me-3">
+                <i class="bx bxs-comment-detail"></i>
+              </div>
+              <div>
+                <h5><a href='{% url "diagnose" %}'>インテリアタイプ診断</a></h5>
+                <p>いくつかの質問に答えてインテリアタイプ診断！</p>
+              </div>
+            </div>
+      
+            <div class="feature d-flex mt-5 col-lg-6">
+              <div class="iconbox me-3">
+                <i class="bx bxs-comment-detail"></i>
+              </div>
+              <div>
+                <h5><a href="{% url "fundamental" %}">コーディネートの基本</a></h5>
+                <p>組み合わせしだいで雰囲気が変わります！</p>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

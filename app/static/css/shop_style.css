@@ -1,0 +1,689 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Sora:wght@400;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main1: rgb(133, 102, 219);
+    --main2: rgb(0, 200, 170);
+    --primary: orange;
+    --dark: #21252f;
+    --body: #888;
+    --box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+}
+
+html.sr {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    content: "";
+    width: 100%;
+    font-family: 'Sora', sans-serif;
+    line-height: 1.7;
+    color: var(--body);
+}
+
+div{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    padding-right: var(--bs-gutter-x,.75rem);
+    padding-left: var(--bs-gutter-x,.75rem);
+}
+
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6,
+.display-4 {
+    color: var(--dark);
+    font-weight: 700;
+}
+
+a {
+    color: var(--dark);
+    text-decoration: none;
+}
+
+section {
+    width: 100%;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+
+.txc {
+    color: var(--main1) !important;
+}
+
+.txc2 {
+    color: var(--main2) !important;
+}
+
+.bg-gradation {
+    background: linear-gradient(orange,rgb(222, 222, 0));
+}
+
+.navbar {
+    background: linear-gradient(orange, yellow);
+}
+
+.navbar .nav-link {
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 700;
+}
+.navbar .nav-link:hover {
+    background-color: navajowhite;
+    color: orangered !important;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.navbar .dropdown-item {
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: navajowhite;
+    color: orangered !important;
+}
+
+.btn {
+    padding: 14px 18px;
+    border-width: 2px;
+}
+
+.hero {
+    width: 100%;
+    background-image: url("https://thumb.photo-ac.com/d5/d5090dd3153480554f1d6ed8d3628a89_t.jpeg");
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(110, 100, 78, 0.5);
+    z-index: -1;
+}
+
+.card {
+    border: 0;
+    box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-effect {
+    width: auto;
+    height: 300px;
+    box-shadow: var(--box-shadow);
+    background-color: #fff;
+    padding: 20px;
+    transition: all 0.35s ease;
+}
+
+.card-effect:hover {
+    box-shadow: none;
+    transform: translateY(5px);
+}
+
+.bg-card {
+    background-color: rgba(236, 192, 96, 0.5);
+}
+
+.iconbox {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 32px;
+    background-color: var(--primary);
+    border-radius: 100px;
+    flex: none;
+}
+
+.service {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.service::after {
+    content: "";
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: linear-gradient(orange,rgb(222, 222, 0));
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.35s ease;
+    z-index: -1;
+}
+.service:hover h5,
+.service:hover p {
+    color: white;
+}
+
+.service:hover .iconbox {
+    background-color: #fff;
+    color: var(--primary);
+}
+
+.service:hover::after {
+    opacity: 1;
+    top: 0;
+}
+
+.col-img {
+    background-image:url("https://thumb.photo-ac.com/ee/ee02ab9e1e34a3d6e0034738a0e3f823_t.jpeg");
+    background-position: center;
+    background-size: cover;
+    min-height: 500px;
+}
+
+/* project section */
+.products {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.products .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(110, 100, 78, 0.6);
+    padding: 30px;
+    display: flex;
+    align-items: flex-end;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.products img {
+    transition: all 0.4s ease;
+}
+
+.products:hover .overlay {
+    opacity: 1;
+}
+.products:hover img {
+    transform: scale(1.1);
+}
+
+/* team section */
+.team-member img {
+    width: 125px;
+    height: 125px;
+    border-radius: 100px;
+    object-fit: cover;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icons a {
+    width: 34px;
+    height: 34px;
+    background-color: var(--primary);
+    border: 2px solid var(--primary);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    margin-left: 5px;
+    transition: all 0.4s ease;
+}
+
+.social-icons a:hover {
+    color: var(--primary);
+    background-color: transparent;
+}
+
+/* comment section */
+.comment-img-card {
+    width: 500px;
+    height: auto;
+    box-shadow: var(--box-shadow);
+    background-color: rgba(0, 200, 170, 0.2);
+    padding: 20px;
+    transition: all 0.35s ease;
+}
+
+.comment-img-card img {
+    position: relative;
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+    cursor: zoom-in;
+}
+
+.comment-img-card-effect:hover {
+    box-shadow: none;
+    transform: translateY(5px);
+}
+
+
+
+/* contact section */
+
+form input.form-control {
+    height: 56px;
+}
+
+form .form-control {
+    border: transparent;
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+form input.form-control-contact {
+    height: 56px;
+}
+
+form .form-control-contact {
+    width: 80vw;
+    border: transparent;
+    border-radius: 0;
+    background-color: rgba(30, 30, 100, 0.04);
+}
+
+.form-check {
+    color: rgb(0, 200, 170);
+    text-align: center;
+    font-weight: 100;
+}
+
+.footer-top {
+    background-color: var(--dark);
+    padding: 90px;
+    padding-bottom: 90px;
+}
+
+.footer-top a {
+    color: var(--body);
+}
+
+.footer-top a:hover {
+    color: #fff;
+}
+
+/* index以降のcss */
+
+.space {
+    height: 20px;
+}
+
+.card-profile {
+    width: 700px;
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.1);
+}
+
+/* .button {
+    display: flex;
+    justify-content: center;
+    width: 150px;
+} */
+
+.btn-col:hover {
+    color: #fff !important;
+}
+
+.btn-light:hover {
+    background-color: rgb(133, 102, 219) !important;
+}
+
+.profile_table {
+    width: 100%;
+    border: 1px solid #D1DBEB;
+    border-radius: 8px;
+    border-collapse: separate;
+    overflow: hidden;
+}
+
+.profile_table .header {
+    width: 200px;
+    padding: 16px 24px;
+    text-align: left;
+    background: #F1F5FA;
+}
+.profile_table .data {
+    padding: 16px 24px;
+}
+
+.form_wrap {
+    display: grid;
+    gap: 16px;
+}
+
+.form-wrap-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.card-auth {
+    width: 400px;
+    border: 0;
+    border-radius: 1rem;
+    box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+
+.card-body2 {
+    padding: 2rem;
+    height: 150px;
+}
+
+.form-auth {
+    width: 100%;
+}
+
+.form-label-group {
+    margin-bottom: 1rem;
+}
+
+.form-label-group input {
+    border-radius: 2rem;
+}
+
+.itemlist img {
+    height: 150px;
+    object-fit: contain;
+}
+
+.product img {
+    height: 350px;
+    object-fit: contain;
+}
+
+.order img {
+    height: 100px;
+    object-fit: contain;
+}
+
+.StripeElement {
+    background-color: #F1F1F1;
+    height: 40px;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+    box-shadow: 0 1px 3px 0 #E6EBF1;
+    transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #CFD7DF;
+}
+
+.StripeElement--invalid {
+    border-color: #FA755A;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #FEFDE5 !important;
+}
+
+.form-group {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.button-order {
+    display: flex;
+    justify-content: center;
+    width: 150px;
+}
+
+.btn-order {
+    font-size: 80%;
+    border-radius: 5rem;
+    font-weight: bold;
+}
+
+.btn-main1 {
+    color: white;
+    background: var(--main1);
+    border: 2px solid var(--main1);
+    font-weight: 700;
+}
+
+.btn-main1:hover {
+    color: white !important;
+    background: rgb(100, 76, 164) !important;
+    border: 2px solid rgb(100, 76, 164) !important;
+    font-weight: 700;
+}
+
+.btn-main2 {
+    color: white;
+    background: var(--main2);
+    border: 2px solid var(--main2);
+    font-weight: 700;
+}
+
+.btn-main2:hover {
+    color: white !important;
+    background: rgb(0, 155, 132) !important;
+    border: 2px solid rgb(0, 155, 132) !important;
+    font-weight: 700;
+}
+
+/* introduce */
+.intro-img {
+    position: relative;
+    background-image:url("https://st4.depositphotos.com/2249091/30067/i/600/depositphotos_300675742-stock-photo-chic-black-chandelier-above-couch.jpg");
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.intro-text-col { 
+    font-size: 60px;
+}
+
+.intro-img p {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 2%;
+    left: 2%;
+    color: white;
+    font-weight: 700;
+    font-size: auto;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.intro-img::after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(74, 53, 22, 0.4);
+    z-index: 1;
+}
+
+/* foundation */
+.funda-img {
+    position: relative;
+    background-image:url("https://st.depositphotos.com/1068269/4045/i/600/depositphotos_40454869-stock-photo-modern-loft-and-kitchen.jpg");
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    min-height: 500px;
+}
+.funda-img2 {
+    position: relative;
+    background-image:url("https://st3.depositphotos.com/12548352/16211/i/600/depositphotos_162117510-stock-photo-interior-of-modern-office.jpg");
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    min-height: 500px;
+}
+.funda-img3 {
+    position: relative;
+    background-image:url("https://st.depositphotos.com/1068269/4459/i/600/depositphotos_44591399-stock-photo-modern-loft.jpg");
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.funda-text-col { 
+    font-size: 60px;
+}
+
+/* .funda-img p {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 2%;
+    left: 2%;
+    color: white;
+    font-weight: 700;
+    font-size: auto;
+    z-index: 10;
+    overflow: hidden;
+} */
+
+/* .funda-img::after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(74, 53, 22, 0.4);
+    z-index: 1;
+} */
+
+/* comment */
+.comment-img {
+    position: relative;
+    background-image:url("https://st3.depositphotos.com/2673929/32583/i/600/depositphotos_325837464-stock-photo-gray-and-yellow-panoramic-dining.jpg");
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.comment-text-col { 
+    font-size: 60px;
+}
+
+.comment-img p {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    top: 2%;
+    left: 2%;
+    color: white;
+    font-weight: 700;
+    font-size: auto;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.comment-img::after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(74, 53, 22, 0.4);
+    z-index: 1;
+}
+
+
+.modal-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.25s ease-out;
+    z-index: 10;
+}
+
+.modal-wrapper.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-image {
+    position: absolute;
+    width: 700px;
+    height: 400px;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0;
+    transition: 0.5s ease-out;
+    cursor: zoom-out;
+    z-index: 10;
+}
+
+.modal-image.show {
+    opacity: 1;
+}
+

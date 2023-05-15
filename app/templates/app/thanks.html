@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<div style="height:20vh;"></div>
+
+<div class="text-center my-5">
+    <h1 class="mb-5 text-success">ご注文ありがとうございました。</h1>
+    <p class="mb-4">今後ともご愛顧承賜りますようお願い申し上げます</p>
+    <a href="{% url 'index' %}" class="btn btn-primary btn-main2">買い物を続ける</a>
+</div>
+
+<div style="height:15vh;"></div>
+{% endblock  %}

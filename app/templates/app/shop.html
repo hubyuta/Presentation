@@ -1,0 +1,412 @@
+{% load cart_tags %}
+{% load widget_tweaks %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+        <title>InteriorShop</title>
+        <link rel="stylesheet" href="{% static 'css/shop_style.css' %}">
+    </head>
+
+    <body>
+        <!-- navbar section -->
+          <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-gradation">
+            <div class="container">
+              <a class="navbar-brand" href="#">
+                  <h2 class="text-white pt-1"><span class="txc">Interior</span><span class="txc2">Shop</span></h2>
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0  d-flex justify-content-center align-items-center">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#products">Products</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#column">Column</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#service">Services</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Dropdown
+                    </a>
+                    <ul class="dropdown-menu bg-warning bg-gradation" aria-labelledby="navbarDropdown">
+                      <li><a class="dropdown-item" href="#">Blog</a></li>
+                      <li><a class="dropdown-item" href="#contact">Contact</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </li>
+                  
+                
+                  {% if user.is_authenticated %}
+                    <li class="nav-item ms-1 my-1">
+                      <a href="{% url 'index' %}" class="btn btn-outline-info btn-col">Shop</a>
+                    </li>
+                    <li class="nav-item my-1">
+                      <a href="{% url 'order' %}" class="btn btn-outline-success ms-1">
+                        Cart
+                        <span class="badge rounded-pill bg-danger">
+                          {{ request.user|itemCount }}
+                        </span>
+                      </a>
+                    </li>
+                    <li class="nav-item my-1">
+                      <a href="{% url 'profile' %}" class="btn btn-outline-primary text-wrap ms-1">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href='{% url "logout" %}' class="btn btn-outline-danger ms-1 my-1">Logout</a>
+                    </li>
+                  {% else %}
+                    <li class="nav-item">
+                      <a href="{% url 'index' %}" class="btn btn-outline-info btn-col ms-1 my-1">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href='{% url "login" %}' class="btn btn-outline-primary ms-1 my-1" type="submit">Login</a>
+                    </li>
+                  </li class="nav-item">
+                      <a href='{% url "signup" %}' class="btn btn-outline-success ms-1 my-1">Signup</a>
+                    </li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          <!-- hero section -->
+          <div class="hero vh-100 d-flex align-items-center" id="home">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-lg-7 mx-auto text-center">
+                        <h1 class="display-4 text-white"><span class="txc">Interior</span><span class="txc2">Shop</span></h1>
+                        <p class="text-white my-3">-インテリア家具・雑貨のECサイトです-あなた好みのインテリアを提供します！</p>
+                        <a href='{% url "index" %}' class="btn btn-outline-warning me-2">Go Shop</a>
+                        <a href="#contact" class="btn btn-outline-light">Contact</a>
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+          <!-- Product section -->
+          <section id="products">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8 mx-auto text-center">
+                      <h6 class="text-warning">Products</h6>
+                      <h1>Products</h1>
+                      <p>製品情報</p> 
+                    </div>
+                  </div>
+
+                  <div class="row g-3">
+                    <div class="col-lg-4 col-sm-6">
+                      <a href='{% url "indexlist" "エレガント" %}'>
+                        <div class="products">
+                          <img src="https://thumb.photo-ac.com/b6/b6ef6d8624996997826be4d3778c9c5f_t.jpeg" alt="">
+                          <div class="overlay">
+                            <div>
+                              <h4 class="text-white">Elegant</h4>
+                              <h6 class="text-white">エレガント</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                      <a href='{% url "indexlist" "コンフォート" %}'>
+                        <div class="products">
+                          <img src="https://thumb.photo-ac.com/29/29f62513c1d193bae0200d9a12d985a9_t.jpeg" alt="">
+                          <div class="overlay">
+                            <div>
+                              <h4 class="text-white">Confort</h4>
+                              <h6 class="text-white">コンフォート</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                      <a href='{% url "indexlist" "ファンシー" %}'>
+                        <div class="products">
+                          <img src="https://thumb.photo-ac.com/83/83784c016e15d6b1efa1831997e07c50_t.jpeg" alt="">
+                          <div class="overlay">
+                            <div>
+                              <h4 class="text-white">Fancy</h4>
+                              <h6 class="text-white">ファンシー</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                      <a href='{% url "indexlist" "ナチュラル" %}'>
+                        <div class="products">
+                          <img src="https://thumb.photo-ac.com/e7/e747bfb1f0a2d10f8a94ca55efacce78_t.jpeg" alt="">
+                          <div class="overlay">
+                            <div>
+                              <h4 class="text-white">Natural</h4>
+                              <h6 class="text-white">ナチュラル</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                      <a href='{% url "indexlist" "ユニーク" %}'>
+                        <div class="products">
+                          <img src="https://thumb.photo-ac.com/40/4058f6ff1fdddb858680a7722cadb8e5_t.jpeg" alt="">
+                          <div class="overlay">
+                            <div>
+                              <h4 class="text-white">Unique</h4>
+                              <h6 class="text-white">ユニーク</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="col-lg-4 col-sm-6">
+                      <a href='{% url "indexlist" "モダン" %}'>
+                        <div class="products">
+                          <img src="https://thumb.photo-ac.com/7c/7c6aa32c76846325b5485716bfe58186_t.jpeg" alt="">
+                          <div class="overlay">
+                            <div>
+                              <h4 class="text-white">Modern</h4>
+                              <h6 class="text-white">モダン</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+            </div>
+          </section>
+            
+          <!-- Column Section -->
+          <section id="column" class="row mt-5 bg-light">
+            <div class="col-lg-6 col-img"></div>
+            <div class="col-lg-6">
+              <div class="container">
+                <div class="row">
+                  <div class="diagnose col-md-10 pt-4 offset-md-1">
+                    <h6 class="text-warning">Witch is your favorite?</h6>
+                    <h1>Column</h1>
+                    <p>あなた好みのインテリアを演出するために、<br>こちらでインテリアについて学びましょう！</p>
+
+                    <div class="d-flex mt-5">
+                      <div class="iconbox me-3">
+                        <i class="bx bxs-comment-detail"></i>
+                      </div>
+                      <div>
+                        <h5><a href='{% url "diagnose" %}'>インテリアタイプ診断</a></h5>
+                        <p>いくつかの質問に答えてインテリアタイプ診断！</p>
+                      </div>
+                    </div>
+                    <div class="feature d-flex mt-5">
+                      <div class="iconbox me-3">
+                        <i class="bx bxs-comment-detail"></i>
+                      </div>
+                      <div>
+                        <h5><a href="{% url "introduce" %}">インテリアデザインとは？</a></h5>
+                        <p>インテリアを充実させると何がいいのか？</p>
+                      </div>
+                    </div>
+                    <div class="feature d-flex mt-5">
+                      <div class="iconbox me-3">
+                        <i class="bx bxs-comment-detail"></i>
+                      </div>
+                      <div>
+                        <h5><a href="{% url "fundamental" %}">コーディネートの基本</a></h5>
+                        <p>組み合わせしだいで雰囲気が変わります！</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Service section -->
+          <section id="service">
+            <div class="container">
+                <div class="row">
+                     <div class="service-info col-md-8 mx-auto text-center">
+                        <h6 class="text-warning">Service</h6>
+                        <h1>Service</h1>
+                        <p>サービス一覧</p> 
+                      </div>
+                  </div>
+
+                  <div class="row g-4">
+                      <div class="col-lg-4 col-sm-6">
+                        <a href="{% url "comment" %}">
+                          <div class="service card-effect">
+                              <div class="iconbox">
+                                <i class="bx bxs-comment-detail"></i>
+                              </div>
+                              <h5 class="mt-4 mb-2">Comment</h5>
+                              <p>インテリアは その人自身を表します<br>モダンな空間や趣味を反映した空間<br>安心できる居心地のいい空間にしましょう
+                              </p>
+                          </div>
+                        </a>
+                      </div>
+                      
+                      <div class="col-lg-4 col-sm-6">
+                        <a href='{% url "index" %}'>  
+                          <div class="service card-effect">
+                              <div class="iconbox">
+                                <i class="bx bxs-home-smile"></i>
+                              </div>
+                              <h5 class="mt-4 mb-2">Shop</h5>
+                              <p>製品購入はこちら<br>さまざまなインテリア雑貨を<br>取り揃えています！</p>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-sm-6">
+                        <a href="">
+                          <div class="service card-effect">
+                            <div class="iconbox">
+                              <i class="bx bxs-user-circle"></i>
+                            </div>
+                            <h5 class="mt-4 mb-2">Comunity</h5>
+                            <p>インテリアに関する<br>意見・情報交換をしましょう！<br>インテリア好きな人たちと交流できます<br>コーディネートの参考になるかも！</p>
+                        </div>
+                      </a>
+                    </div>
+                      <div class="col-lg-4 col-sm-6">
+                        <a href="#">  
+                          <div class="service card-effect">
+                              <div class="iconbox">
+                                <i class="bx bxs-chart"></i>
+                              </div>
+                              <h5 class="mt-4 mb-2">Trend</h5>
+                              <p>ここ最近のトレンドを分析<br>この機会に流行りのコーディネートを<br>知りましょう！</p>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-sm-6">
+                        <a href="#">  
+                          <div class="service card-effect">
+                              <div class="iconbox">
+                                <i class="bx bxs-star"></i>
+                              </div>
+                              <h5 class="mt-4 mb-2">Professional</h5>
+                              <p>お家の間取り・構成に基づいて<br>インテリアコーディネーターに<br>デザイン案を依頼したい方はこちら</p>
+                          </div>
+                        </a>
+                      </div>
+                      <div class="col-lg-4 col-sm-6">
+                        <a href="#contact">  
+                          <div class="service card-effect">
+                              <div class="iconbox">
+                                <i class="bx bxs-planet"></i>
+                              </div>
+                              <h5 class="mt-4 mb-2">Contact</h5>
+                              <p>製品・サービスに関してのお問い合わせはこちら</p>
+                          </div>
+                        </a>
+                      </div>
+                  </div>
+            </div>
+          </section>
+
+          <!-- contact section -->
+          <section id="contact" class="bg-light">
+            <div class="container">
+                <div class="row">
+                  <div class="contact-info col-md-8 mx-auto text-center">
+                    <h6 class="text-warning">Contact</h6>
+                    <h1>Contact</h1>
+                    <p>製品についてのお問い合わせ・ご意見はこちら</p> 
+                  </div>
+                </div>
+
+                <form action="" method="post" class="row g-3 justify-content-center">
+                  {% csrf_token %}
+                  {{ form.name|add_class:"box-1 col-md-10 form-control"|attr:"placeholder=氏名（必須）" }}
+                  {{ form.email|add_class:"box-2 col-md-10 form-control"|attr:"placeholder=メールアドレス（必須）" }}
+                  {{ form.subject|add_class:"box-3 col-md-5 form-control"|attr:"placeholder=件名" }}
+                  {{ form.message|add_class:"box-4 col-md-5 form-control"|attr:"placeholder=メッセージ（最低１０文字以上入力してください）" }}
+                  <div class="box-5 col-md-10 d-grid">
+                    <input type="submit" value="送信" class="btn btn-primary btn-main1">
+                  </div>
+                </form>
+            </div>
+          </section>
+
+          <!-- footer section-->
+          <footer>
+            <div class="footer-top">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-4">
+                    <a class="navbar-brand" href="#">
+                      <h2 class="text-white"><span class="txc">Interior</span><span class="txc2">Shop</span></h2>
+                    </a>
+                  </div>
+                  <div class="col-md-2">
+                    <h5 class="text-white">Brand</h5>
+                    <ul class="list-unstyled">
+                      <li><a href="{% url "comment" %}">About</a></li>
+                      <li><a href="{% url "index" %}">Products</a></li>
+                      <li><a href="#service">Servises</a></li>
+                      <li><a href="#">Pricing</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-2">
+                    <h5 class="text-white">More</h5>
+                    <ul class="list-unstyled">
+                      <li><a href="#">FAQ's</a></li>
+                      <li><a href="#">Privacy and Policy</a></li>
+                      <li><a href="#">Warrantry</a></li>
+                      <li><a href="#">Shipment</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                    <h5 class="text-white">Pages</h5>
+                    <ul class="list-unstyled">
+                    <li>Address: Japan Tokyo</li>
+                    <li>Email: InteriorShop@gmail.com</li>
+                    <li>Phone: 000-111-222</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+          ScrollReveal({ reset: false, distance: "120px", duration: 2000, deray: "200" });
+          //Hero
+          ScrollReveal().reveal(".hero h1", { delay: 200, origin: "top" });
+          ScrollReveal().reveal(".hero p", { delay: 300, origin: "left" });
+          ScrollReveal().reveal(".hero a, .products img", { delay: 300, origin: "bottom", interval:200 });
+          //Products
+          ScrollReveal().reveal(".products img", { delay: 150, origin: "bottom", interval:200 });
+          ScrollReveal().reveal(".products .overlay", { delay: 150, origin: "bottom", interval:200 });
+          //Diagnose
+          ScrollReveal().reveal(".col-img", { delay: 200, origin: "left" });
+          ScrollReveal().reveal(".diagnose", { delay: 200, origin: "right" });
+          //Service
+          ScrollReveal().reveal(".service-info", { delay: 150, origin: "top"});
+          ScrollReveal().reveal(".service", { delay: 150, origin: "bottom", interval:200 });
+          //conact
+          ScrollReveal().reveal(".contact-info", { delay: 150, origin: "top"});
+          ScrollReveal().reveal(".box-1", { delay: 150, origin: "lright", interval:200 });
+          ScrollReveal().reveal(".box-2", { delay: 150, origin: "left", interval:200 });
+          ScrollReveal().reveal(".box-3", { delay: 150, origin: "lright", interval:200 });
+          ScrollReveal().reveal(".box-4", { delay: 150, origin: "left", interval:200 });
+          ScrollReveal().reveal(".box-5", { delay: 150, origin: "lright", interval:200 });
+        </script>
+    </body>
+</html>
